@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
-require './lib/side_hustle'
+require_relative  '../lib/side_hustle'
 
 SideHustle::CLI.new.call
