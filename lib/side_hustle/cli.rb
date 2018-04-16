@@ -1,7 +1,7 @@
 #CLI Controller
 
 class SideHustle::CLI
-  attr_accessor :user_sport, :user_date
+  attr_accessor :user_sport, :user_date, :user_url
 
  def call
    puts "Testing testing 123"
@@ -49,13 +49,14 @@ class SideHustle::CLI
    while user_date == 00000000
      puts "Pick a date in yyyymmdd format"
      @user_date = gets.strip.to_i
-     if @user_date == 0 || @user_date > 19800101
-       @user_date = "#{@user_sport}?date=#{@user_date}"
+     if @user_date > 19800101
+       @user_url = "#{@user_sport}?date=#{@user_date}"
      else
+       puts "Invalid date"
        @user_date = 00000000
      end
    end
-   puts @user_date
+   puts @user_url
  end
 
 
