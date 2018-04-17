@@ -7,6 +7,7 @@ class SideHustle::CLI
    puts "Testing testing 123"
    user_sport_choice
    user_date_choice
+   user_odds
  end
 
  def user_sport_choice
@@ -57,6 +58,12 @@ class SideHustle::CLI
      end
    end
    puts @user_url
+ end
+
+ def odds
+   #somehow returns scrapes and return odds
+   #possibly @odds = SideHustle::Odds
+   #https://www.youtube.com/watch?v=_lDExWIhYKI 29:00
  end
 
 
