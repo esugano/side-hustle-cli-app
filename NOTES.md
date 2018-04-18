@@ -12,7 +12,6 @@ Imagine my interface
   - UFC - /ufc
   - Boxing - /boxing
 2. Ask user to pick a date - url yyyymmdd
-3. Ask user for betting line (#1-#3) - maybe irrelevant if sport season is over?
-4. Ask user to pick a team
-5. Provide times and odds back
-6. Somehow save those odds into a database
+4. Scrape and return teams listed
+5. Ask user to pick team
+6. Return team odds
