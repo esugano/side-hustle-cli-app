@@ -60,11 +60,11 @@ class SideHustle::CLI
    puts @user_url
  end
 
- def odds
-   #somehow returns scrapes and return odds
-   #possibly @odds = SideHustle::Odds
-   #https://www.youtube.com/watch?v=_lDExWIhYKI 29:00
- end
+ # def odds
+ #   #somehow returns scrapes and return odds
+ #   #possibly @odds = SideHustle::Odds
+ #   #https://www.youtube.com/watch?v=_lDExWIhYKI 29:00
+ # end
 
 
 end
