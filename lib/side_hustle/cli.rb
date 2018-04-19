@@ -79,5 +79,4 @@ class SideHustle::CLI
  end
 #returns odds for that specific team
 
-
 end
