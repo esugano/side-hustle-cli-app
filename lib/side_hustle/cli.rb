@@ -1,13 +1,14 @@
 #CLI Controller
 
 class SideHustle::CLI
-  attr_accessor :user_sport, :user_date, :user_url, :odds
+  attr_accessor :user_sport, :user_date, :user_url, :team_pick, :team_odds
 
  def call
    puts "Testing testing 123"
    user_sport_choice
    user_date_choice
-   user_odds
+   list_teams
+   team_pick
  end
 
  def user_sport_choice
@@ -60,11 +61,19 @@ class SideHustle::CLI
    puts @user_url
  end
 
- def odds
-   #somehow returns scrapes and return odds
-    @odds = SideHustle::Odds.test
-   #https://www.youtube.com/watch?v=_lDExWIhYKI 29:00
+ def list_teams
+   @team_list = SideHustle::Odds.list_teams
  end
+
+ def team_pick
+   puts "Pick a team"
+   @team_pick = gets.strip
+ end
+
+ def team_odds
+   @team_odds = SideHustle::Odds.list_odds
+ end
+#returns odds for that specific team
 
 
 end
