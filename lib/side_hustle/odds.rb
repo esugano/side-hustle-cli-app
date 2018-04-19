@@ -1,18 +1,23 @@
 class SideHustle::Odds
   attr_accessor :name, :odds
 
-  def test
+  def self.team_1(name, odds)
+    team_1 = self.new
+    team_1.name = name
+    team_1.odds = odds
+    puts team_1
+  end
 
-    puts "testing testing 1 2 3"
-  # team_1 = self.new
-  # team_1.name = "New England Patriots"
-  # team_1.odds = "+500"
-  #
-  # team_2 = self.new
-  # team_1.name = "San Francisco 49ers"
-  # team_1.odds = "+850"
-  #
-  # [team_1, team_2]
+  def self.team_2(name, odds)
+    team_2 = self.new
+    team_2.name = name
+    team_2.odds = odds
+    puts team_2
+  end
+
+  def self.odds
+    puts team_1
+    puts team_2
   end
 
 end
