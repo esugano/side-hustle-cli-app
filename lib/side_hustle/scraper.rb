@@ -1,7 +1,7 @@
 class SideHustle::Scraper
   attr_accessor :messy_code, :scrape_team_names, :scrape_team_odds, :list_teams
 
-  def self.scrape_page
+  def scrape_page
     @scrape_team_names = []
     @scrape_team_odds = []
     @list_teams = {}
@@ -26,10 +26,12 @@ class SideHustle::Scraper
     end
 
   #merge @scrape_team_names and @scrape_team_odds into one hash, @list_teams
-  @scrape_team_names.each_with_index do |value, index|
-    @list_teams = @list_teams.merge({:name => value, :odds => @scrape_team_odds[index]})
+    @scrape_team_names.each_with_index do |value, index|
+      @list_teams["#{value}"] = {:name => value, :odds => @scrape_team_odds[index]}
+    end
+
+    #prints out @list_teams
+    puts @list_teams
   end
-    binding.pry
-end
 
 end
