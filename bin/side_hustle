@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require "bundler/setup"
 require_relative '../lib/side_hustle'
-
-SideHustle::CLI.new.call
-# SideHustle::Odds.new.test
+#
+# SideHustle::CLI.new.call
+SideHustle::Scraper.new.scrape_page

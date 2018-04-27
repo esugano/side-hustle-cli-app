@@ -1,19 +1,30 @@
 class SideHustle::Odds
-  attr_accessor :list_teams, :team_names, :team_odd_scrape
+  attr_accessor :name, :odds
 
-  def initialize(scrape_hash)
-    @list_teams = scrape_hash
+  @@all = []
+
+  def self.new_from_scrape_page(code)
+    self.new(code)
   end
 
-  def self.list_teams
-    @list_teams.each_with_index do |(key, value), index|
-      puts "#{team[key][:name]}"
+  def initialize(code)
+    #grabs name
+    code.css('.team').each do |indiv_teams|
+      @name = indiv_teams.text
     end
+
+    #grabs odds
+    code.css('.lines').each do |each_team|
+      each_team.css('#book-19').each do |odds|
+        @odds = odds.search('span').text
+      end
+    end
+
+    @@all << self
   end
 
-  def self.team_odds(team)
-    puts "+500"
+  def self.all
+    @@all
   end
 
-
-end
+end #ends class
