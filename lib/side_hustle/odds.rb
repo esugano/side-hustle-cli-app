@@ -27,4 +27,16 @@ class SideHustle::Odds
     @@all
   end
 
+  def self.list_teams
+    #list all the names of the teams
+  end
+
+  def find_odds
+    # #loop those all the team names
+    #   if name == user_input_name
+    #     return odds
+    #   else
+    #     keep going or return error
+    #   end
+  end
 end #ends class
