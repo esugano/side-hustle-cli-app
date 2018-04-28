@@ -3,17 +3,14 @@ class SideHustle::Odds
 
   @@all = []
 
-  def self.new_from_scrape_page(code)
-    self.new(code)
+  def self.new_from_scrape_page(name)
+    self.new(name)
     @@all << self
   end
 
-  def initialize(code)
-    #grabs name
-    code.css('.team').each do |indiv_teams|
-      @name = indiv_teams.text
-    end
-    
+  def initialize(name)
+    @name = name
+
     #grabs odds
     # code.css('.lines').each do |each_team|
     #   each_team.css('#book-19').each do |odds|
@@ -28,7 +25,7 @@ class SideHustle::Odds
   end
 
   def self.all
-    @@all 
+    @@all
   end
 
   def self.list_teams

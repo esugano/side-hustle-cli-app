@@ -7,11 +7,12 @@ class SideHustle::Scraper
 
   def scrape_page
     self.get_page.css(".sides")
-  end 
-  
+  end
+
   def make_teams
-     SideHustle::Odds.new_from_scrape_page(self.scrape_page)
-     binding.pry
+    self.scrape_page.css('.team').each do |teams|
+      SideHustle::Odds.new_from_scrape_page("#{teams.text}")
+    end
   end
 
   # def make_teams
