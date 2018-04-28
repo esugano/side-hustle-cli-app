@@ -1,10 +1,11 @@
 class SideHustle::Odds
-  attr_accessor :name, :odds
+  attr_accessor :name, :odds, :list_teams
 
   @@all = []
 
   def self.new_from_scrape_page(code)
     self.new(code)
+    @@all << self
   end
 
   def initialize(code)
@@ -12,28 +13,34 @@ class SideHustle::Odds
     code.css('.team').each do |indiv_teams|
       @name = indiv_teams.text
     end
-
+    
     #grabs odds
-    code.css('.lines').each do |each_team|
-      each_team.css('#book-19').each do |odds|
-        @odds = odds.search('span').text
-      end
-    end
+    # code.css('.lines').each do |each_team|
+    #   each_team.css('#book-19').each do |odds|
+    #     @odds = odds.search('span').text
+    #   end
+    # end
 
-    @@all << self
+    # #merge @scrape_team_names and @scrape_team_odds into one hash, @list_teams
+    #   @scrape_team_names.each_with_index do |value, index|
+    #     @list_teams["#{value}"] = {:name => value, :odds => @scrape_team_odds[index]}
+    #   end
   end
 
   def self.all
-    @@all
+    @@all 
   end
 
   def self.list_teams
     #list all the names of the teams
+    # @@all.each do |team|
+    #   list_teams << team.name
+    # end
   end
 
   def find_odds
-    # #loop those all the team names
-    #   if name == user_input_name
+    # @@all.each do |team|
+    #   if name == ???
     #     return odds
     #   else
     #     keep going or return error
