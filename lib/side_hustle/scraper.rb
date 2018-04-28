@@ -6,14 +6,17 @@ class SideHustle::Scraper
   end
 
   def scrape_page
-    self.get_page.css(".sides")
+    self.get_page.css(".sides").each do |side|
+      side
+    # binding.pry
+  end
   end
 
-  def make_teams
-    self.scrape_page.css('.team').each do |teams|
-      SideHustle::Odds.new_from_scrape_page("#{teams.text}")
-    end
-  end
+  # def make_teams
+  #   self.scrape_page.css('.team').each do |teams|
+  #     SideHustle::Odds.new_from_scrape_page("#{teams.text}")
+  # #   end
+  # end
 
   # def make_teams
   #   scrape_teams.each do |t|
