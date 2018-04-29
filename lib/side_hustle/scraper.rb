@@ -15,10 +15,10 @@ class SideHustle::Scraper
       team_odd_combo.css('.lines').each do |each_team|
          each_team.css('#book-19').each do |each_team_odds|
           @odds = each_team_odds.search('span').text
+          #creates a SideHustle::Odds class with the name and odd
+          SideHustle::Odds.new(@name, @odds)
          end #ends line 14
       end #ends line 13
-      #creates a SideHustle::Odds class with the name and odd
-      SideHustle::Odds.new(@name, @odds)
     end #ends line 9
   end #ends #scrape_page
  end
