@@ -3,25 +3,10 @@ class SideHustle::Odds
 
   @@all = []
 
-  def self.new_from_scrape_page
-    SideHustle::Scraper.new.scrape_page.css('.team').each do |teams|
-      @@all << self.new("#{teams.text}")
-    end
-  end
-
-  def initialize(name)
+  def initialize(name, odds)
     @name = name
-    #grabs odds
-    # code.css('.lines').each do |each_team|
-    #   each_team.css('#book-19').each do |odds|
-    #     @odds = odds.search('span').text
-    #   end
-    # end
-
-    # #merge @scrape_team_names and @scrape_team_odds into one hash, @list_teams
-    #   @scrape_team_names.each_with_index do |value, index|
-    #     @list_teams["#{value}"] = {:name => value, :odds => @scrape_team_odds[index]}
-    #   end
+    @odds = odds
+    @@all << self
   end
 
   def self.all
@@ -34,12 +19,4 @@ class SideHustle::Odds
     end
   end
 
-  def find_odds
-    # @@all.each do |team|
-    # #   if name == ???
-    # #     return odds
-    # #   else
-    # #     keep going or return error
-    # #   end
-  end
 end #ends class
