@@ -4,17 +4,18 @@ class SideHustle::CLI
   attr_accessor :user_team_choice
 
  def call
+   puts "Welcome to my sports gambling haven!"
+   menu
  end
 
- def list_teams
-   puts "Please pick a team from the following list:"
-   SideHustle::Odds.list_teams
-   @user_team_choice = gets.strip
- end
+ def menu
+  puts "Pick your team and we'll give you their odds"
+  SideHustle::Scraper.new.scrape_page
+  SideHustle::Odds.list_teams
 
- def team_odds
- end
-
+  input = gets.strip.to_i.downcase
+  end
+  
 end
 
 # def user_sport_choice
