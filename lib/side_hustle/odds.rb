@@ -14,8 +14,8 @@ class SideHustle::Odds
   end
 
   def self.list_teams
-    @@all.each do |team|
-      puts team.name
+    @@all.each_with_index do |team, index|
+      puts "#{index + 1}. #{team.name}"
     end
   end
 
