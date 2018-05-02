@@ -22,7 +22,7 @@ class SideHustle::Odds
 #returns user's team's odds based on user's team pick
   def self.odds(user_team)
     @@all.each do |team|
-      if team.name == user_team
+      if team.name.downcase == user_team.downcase
         puts team.odds
       end
     end
