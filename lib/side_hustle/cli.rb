@@ -1,7 +1,9 @@
 #CLI Controller
 
 class SideHustle::CLI
-  attr_accessor :user_team_choice
+  attr_accessor :input
+
+  @input = ""
 
  def self.call
    welcome
@@ -23,8 +25,19 @@ class SideHustle::CLI
   puts "NFL Teams List"
   puts "--------------"
   SideHustle::Odds.list_teams
+  "Enter your pick now"
+  @input = gets.strip.downcase
 
-  input = gets.strip.to_i.downcase
+  binding.pry
+  # if user_pick == one of the teams 
+  #   return odds
+  # else
+  #   keep going
+
+
+  SideHustle::Odds.odds(@user_pick)
+
+
   end
 
 end
