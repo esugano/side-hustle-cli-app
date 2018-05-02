@@ -19,4 +19,13 @@ class SideHustle::Odds
     end
   end
 
+#returns user's team's odds 
+  def self.odds(user_team)
+    @@all.each do |team|
+      if team.name == user_team
+        puts team.odds
+      end
+    end
+  end
+
 end #ends class
