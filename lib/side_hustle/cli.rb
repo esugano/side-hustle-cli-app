@@ -1,3 +1,4 @@
+
 #CLI Controller
 
   class SideHustle::CLI
@@ -24,28 +25,29 @@
     puts ""
     puts "NFL Teams List"
     puts "--------------"
-    SideHustle::Odds.list_teams
+    puts SideHustle::Odds.list_teams
     "Enter your pick now"
-    @input = gets.strip.downcase
+    @input = gets.strip.upcase
 
 
-    if @input == "exit"
-        puts "See you next time!"
-        exit
+    if @input == "EXIT"
+      puts "See you next time!"
+      exit
     else
-    while @input != "exit"
-    @input.to_i
-      if 0 < @input < SideHustle::Odds.list_teams.length == true
-          SideHustle::Odds.all[@input].odds
-      else
-        puts "Not a valid response. Please type a number (not the team name) or exit "
-        @input = gets.strip.to_i
+      while @input != "exit"
+        if SideHustle::Odds.list_teams.include?(@input)
+          SideHustle::Odds.odds(@input)
+          puts "Would you like to see another team?"
+          @input = gets.strip.upcase
+        else
+          puts "Not a valid response. Please type the team name as EXACTLY as it is displayed or exit "
+          @input == "EXIT" ? exit : @input = gets.strip.upcase
         end #ends if/else
       end #ends while loop
     end #ends if/else loop
 
     end #ends menu
-
+#SideHustle::CLI.call
 end
 # def user_sport_choice
 #   @user_sport = ""
