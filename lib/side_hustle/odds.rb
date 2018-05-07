@@ -1,5 +1,6 @@
+
 class SideHustle::Odds
-  attr_accessor :name, :odds, :list_teams
+  attr_accessor :name, :odds, :teams
 
   @@all = []
 
@@ -14,9 +15,11 @@ class SideHustle::Odds
   end
 
   def self.list_teams
-    @@all.each_with_index do |team, index|
-      puts "#{index + 1}. #{team.name}"
+    @teams = []
+    @@all.each do |team|
+      @teams << team.name.upcase
     end
+    @teams
   end
 
 #returns user's team's odds based on user's team pick
@@ -24,7 +27,7 @@ class SideHustle::Odds
     @@all.each do |team|
       if team.name.downcase == user_team.downcase
         puts team.odds
-      end
+      end 
     end
   end
 
