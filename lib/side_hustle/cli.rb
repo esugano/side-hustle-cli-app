@@ -1,47 +1,52 @@
 #CLI Controller
 
-class SideHustle::CLI
-  attr_accessor :input
+  class SideHustle::CLI
+    attr_accessor :input
 
-  @input = ""
+    @input = ""
 
- def self.call
-   welcome
-   menu
- end
+   def self.call
+     welcome
+     menu
+   end
 
- def self.welcome
-   puts ""
-   puts "WELCOME TO MY SPORTS GAMBLING HAVEN!"
-   puts ""
- end
-
-
- def self.menu
-  puts "Pick your team from the following list to get their odds"
-  puts " "
-  SideHustle::Scraper.new.scrape_page
-  puts ""
-  puts "NFL Teams List"
-  puts "--------------"
-  SideHustle::Odds.list_teams
-  "Enter your pick now"
-  @input = gets.strip.downcase
-
-  binding.pry
-  # if user_pick == one of the teams 
-  #   return odds
-  # else
-  #   keep going
+   def self.welcome
+     puts ""
+     puts "WELCOME TO MY SPORTS GAMBLING HAVEN!"
+     puts ""
+   end
 
 
-  SideHustle::Odds.odds(@user_pick)
+   def self.menu
+    puts "Pick your team from the following list to get their odds"
+    puts " "
+    SideHustle::Scraper.new.scrape_page
+    puts ""
+    puts "NFL Teams List"
+    puts "--------------"
+    SideHustle::Odds.list_teams
+    "Enter your pick now"
+    @input = gets.strip.downcase
 
 
-  end
+    if @input == "exit"
+        puts "See you next time!"
+        exit
+    else
+    while @input != "exit"
+    @input.to_i
+      if 0 < @input < SideHustle::Odds.list_teams.length == true
+          SideHustle::Odds.all[@input].odds
+      else
+        puts "Not a valid response. Please type a number (not the team name) or exit "
+        @input = gets.strip.to_i
+        end #ends if/else
+      end #ends while loop
+    end #ends if/else loop
+
+    end #ends menu
 
 end
-
 # def user_sport_choice
 #   @user_sport = ""
 #   while !@user_sport.include?("https:")
