@@ -29,19 +29,28 @@
     "Enter your pick now"
     @input = gets.strip.upcase
 
-
     if @input == "EXIT"
       puts "See you next time!"
       exit
+    #Any other @input but exits
     else
-      while @input != "exit"
+      #keep running until @input is exit
+      while @input != "EXIT"
+        #if the input is valid
         if SideHustle::Odds.list_teams.include?(@input)
           SideHustle::Odds.odds(@input)
-          puts "Would you like to see another team?"
+          #goes through the loop again
+          puts "Would you like to see another team? If so, enter the team's name EXACTLY as it is displayed. Otherwise, type in exit"
           @input = gets.strip.upcase
+        #if @input is invalid answer
         else
           puts "Not a valid response. Please type the team name as EXACTLY as it is displayed or exit "
-          @input == "EXIT" ? exit : @input = gets.strip.upcase
+          if @input == "EXIT"
+            puts "See you next time!"
+            exit
+          else
+            @input = gets.strip.upcase
+          end
         end #ends if/else
       end #ends while loop
     end #ends if/else loop
