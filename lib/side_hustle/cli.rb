@@ -1,61 +1,63 @@
 
 #CLI Controller
 
-  class SideHustle::CLI
-    attr_accessor :input
+class SideHustle::CLI
 
-    @input = ""
+  def self.call
+    welcome
+    menu
+  end
 
-   def self.call
-     welcome
-     menu
-   end
-
-   def self.welcome
-     puts ""
-     puts "WELCOME TO MY SPORTS GAMBLING HAVEN!"
-     puts ""
-   end
+  def self.welcome
+    puts ""
+    puts "WELCOME TO MY SPORTS GAMBLING HAVEN!"
+    puts ""
+  end
 
 
-   def self.menu
+  def self.menu
+    input = ""
     puts "Pick your team from the following list to get their odds"
     puts " "
-    SideHustle::Scraper.new.scrape_page
-    puts ""
-    puts "NFL Teams List"
-    puts "--------------"
-    puts SideHustle::Odds.list_teams
-    "Enter your pick now"
-    @input = gets.strip.upcase
 
-    if @input == "EXIT"
-      puts "See you next time!"
-      exit
-    #Any other @input but exits
+    list
+
+    "Enter your pick now"
+    input = gets.strip.upcase
+
+    if input == "EXIT"
+      bye
     else
-      #keep running until @input is exit
-      while @input != "EXIT"
-        #if the input is valid
-        if SideHustle::Odds.list_teams.include?(@input)
-          SideHustle::Odds.odds(@input)
+      while input != "EXIT"
+        if SideHustle::Odds.list_teams.include?(input)
+          SideHustle::Odds.odds(input)
           #goes through the loop again
           puts "Would you like to see another team? If so, enter the team's name EXACTLY as it is displayed. Otherwise, type in exit"
-          @input = gets.strip.upcase
-        #if @input is invalid answer
+          input = gets.strip.upcase
         else
           puts "Not a valid response. Please type the team name as EXACTLY as it is displayed or exit "
-          if @input == "EXIT"
-            puts "See you next time!"
-            exit
-          else
-            @input = gets.strip.upcase
-          end
+          input == "EXIT" ? bye : input = gets.strip.upcase
         end #ends if/else
       end #ends while loop
     end #ends if/else loop
 
-    end #ends menu
+  end #ends menu
+
+    def self.list
+      puts ""
+      SideHustle::Scraper.new.scrape_page
+      puts ""
+      puts "NFL Teams List"
+      puts "--------------"
+      puts SideHustle::Odds.list_teams
+    end
+
+    def self.bye
+      puts ""
+      puts "See you next time!"
+      puts ""
+    end
+
 #SideHustle::CLI.call
 end
 # def user_sport_choice
